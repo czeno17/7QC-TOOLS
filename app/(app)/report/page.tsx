@@ -92,7 +92,7 @@ export default function ReportPage() {
         <p><strong>Analysis:</strong> ${escapeHtml(finding.interpretation)}</p>
       </section>`).join("");
     const html = `<!doctype html><html><head><meta charset="utf-8"><title>${escapeHtml(outputTitle)}</title>
-      <style>body{font:14px/1.6 Arial,sans-serif;color:#222;max-width:900px;margin:40px auto;padding:0 24px}h1{font-size:28px}h2{border-bottom:1px solid #ccc;padding-bottom:8px}table{width:100%;border-collapse:collapse;margin:24px 0}th,td{border:1px solid #ccc;padding:8px;text-align:left}.key{font-weight:bold;background:#f3f3f3;width:150px}pre{white-space:pre-wrap;background:#f5f5f5;padding:12px}.sub,.method{color:#777}.sub{text-transform:uppercase;font-size:11px;letter-spacing:.1em}figure{margin:20px 0;page-break-inside:avoid}figure svg{width:100%;height:auto;max-height:520px}figcaption,.note{color:#777;font-size:12px}section{margin:28px 0;page-break-inside:avoid}.signatures{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:45px}.signatures div{border-top:1px solid #777;padding-top:8px}@media print{body{margin:0 auto}}</style></head><body>
+      <style>body{font:14px/1.6 Arial,sans-serif;color:#222;max-width:900px;margin:40px auto;padding:0 24px}h1{font-size:28px}h2{border-bottom:1px solid #ccc;padding-bottom:8px}table{width:100%;border-collapse:collapse;margin:24px 0}th,td{border:1px solid #ccc;padding:8px;text-align:left}.key{font-weight:bold;background:#f3f3f3;width:150px}pre{white-space:pre-wrap;background:#f5f5f5;padding:12px}.sub,.method{color:#777}.sub{text-transform:uppercase;font-size:11px;letter-spacing:.1em}figure{margin:20px 0;page-break-inside:avoid;break-inside:avoid}figure svg{display:block;width:100%;height:auto;max-height:none;overflow:visible}figcaption,.note{color:#777;font-size:12px}section{margin:28px 0;page-break-inside:avoid}.signatures{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:45px}.signatures div{border-top:1px solid #777;padding-top:8px}@media print{body{margin:0 auto}figure svg{width:100%;height:auto;max-height:none}}</style></head><body>
       <p>Quality Management System · Audit Record</p><h1>${escapeHtml(outputTitle)}</h1>
       <p>${escapeHtml(process)} · Compiled ${escapeHtml(compiled.now.toLocaleString())}</p>
       <table><tr><td class="key">Report No.</td><td>${escapeHtml(compiled.reportNo)}</td><td class="key">Revision</td><td>${escapeHtml(revision)}</td></tr>
@@ -182,7 +182,7 @@ export default function ReportPage() {
             <h3 className="my-2 text-lg font-semibold">{index + 2}. {finding.label}</h3>
             <p className="mb-2 text-xs text-fg-3">Method — {TOOL_METHODS[finding.id]}</p>
             {finding.chartSvgs?.map((svg, figureIndex) => (
-              <figure key={figureIndex} className="my-4 overflow-x-auto rounded border border-border bg-bg-2 p-3 print:break-inside-avoid">
+              <figure key={figureIndex} className="my-4 rounded border border-border bg-bg-2 p-3 print:break-inside-avoid">
                 <div className="report-chart" dangerouslySetInnerHTML={{ __html: svg }} />
                 <figcaption className="mt-2 text-xs text-fg-3">Figure {figureIndex + 1} — {finding.label}</figcaption>
               </figure>

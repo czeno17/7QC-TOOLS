@@ -62,6 +62,17 @@ export default function FishbonePage() {
     updateTool("fishbone", null, false);
   };
 
+  const chartCategories: FishboneCategory[] = result
+    ? CATEGORIES.map(name => ({
+      name,
+      causes: result.categories.find(category => category.name === name)?.causes ?? [],
+    }))
+    : [];
+  const largestCategory = result?.categories.reduce<FishboneCategory | null>(
+    (largest, category) => !largest || category.causes.length > largest.causes.length ? category : largest,
+    null,
+  );
+
   return (
     <ToolPageLayout
       title="Fishbone Diagram"
@@ -89,10 +100,11 @@ export default function FishbonePage() {
       result={result ? (
         <ToolReportCapture toolId="fishbone" captureKey={result}>
         <>
-          <FishboneChart effect={result.effect} categories={result.categories} />
+          <FishboneChart effect={result.effect} categories={chartCategories} />
           <StatGrid stats={[
             { label: "Candidate causes", value: String(result.totalCauses) },
             { label: "Categories used", value: String(result.categories.length) },
+            { label: "Largest category", value: largestCategory ? `${largestCategory.name} · ${largestCategory.causes.length}` : "—" },
           ]} />
           <ToolInterpretation>{result.interpretation}</ToolInterpretation>
         </>

@@ -78,7 +78,7 @@ export function ToolReportCapture({
     return () => cancelAnimationFrame(frame);
   }, [captureKey, toolId, updateTool]);
 
-  return <div ref={containerRef}>{children}</div>;
+  return <div ref={containerRef} className="flex flex-col gap-4">{children}</div>;
 }
 
 export function ToolActions({
@@ -118,7 +118,7 @@ export function ToolInterpretation({ children }: { children: ReactNode }) {
 
 export function StatGrid({ stats }: { stats: { label: string; value: string }[] }) {
   return (
-    <dl className="grid grid-cols-2 gap-3 sm:grid-cols-3">
+    <dl className="grid grid-cols-2 gap-4 sm:grid-cols-3">
       {stats.map(stat => (
         <div key={stat.label} className="rounded border border-border bg-bg-2 p-3">
           <dt className="font-mono text-[10px] uppercase tracking-wider text-fg-3">{stat.label}</dt>
