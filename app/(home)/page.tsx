@@ -35,15 +35,15 @@ function ToolCard({ tool }: { tool: (typeof TOOL_REGISTRY)[number] }) {
             <ToolStatusPill toolId={tool.id} />
           </div>
         </div>
-        <div className="relative mt-2 min-w-0 flex-1 pr-20">
-          <p id={`tool-description-${tool.id}`} className="line-clamp-2 text-sm leading-5 text-fg-2">{tool.useWhen}</p>
-          <ArrowUpRight
-            aria-hidden="true"
-            size={16}
-            className="absolute bottom-0 right-0 text-fg-3 transition-[color,transform] duration-150 group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-accent group-focus-within:-translate-y-0.5 group-focus-within:translate-x-0.5 group-focus-within:text-accent motion-reduce:transform-none"
-          />
+        <div className="mt-2 min-w-0 flex-1">
+          <p id={`tool-description-${tool.id}`} className="pr-7 text-sm leading-5 text-fg-2">{tool.useWhen}</p>
         </div>
       </Link>
+      <ArrowUpRight
+        aria-hidden="true"
+        size={16}
+        className="pointer-events-none absolute bottom-4 right-4 text-fg-3 transition-[color,transform] duration-150 group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-accent group-focus-within:-translate-y-0.5 group-focus-within:translate-x-0.5 group-focus-within:text-accent motion-reduce:transform-none"
+      />
       <LoadExampleButton toolId={tool.id} href={tool.href} />
     </article>
   );
@@ -87,7 +87,7 @@ export default function HomePage() {
               <section key={name} aria-labelledby={groupId}>
                 <h2 id={groupId} className="font-mono text-[10px] uppercase tracking-[0.08em] text-fg-3">{name}</h2>
                 <p className="mt-1 text-sm text-fg-2">{description}</p>
-                <div className="mt-3 grid auto-rows-fr items-stretch gap-3 md:grid-cols-2 lg:grid-cols-3">
+                <div className="mt-3 grid auto-rows-fr items-stretch gap-3 md:grid-cols-2 xl:grid-cols-3">
                   {tools.map(tool => <ToolCard key={tool.id} tool={tool} />)}
                 </div>
               </section>
